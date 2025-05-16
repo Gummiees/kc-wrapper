@@ -10,4 +10,4 @@ The problem is that to test you have to push against hotfix/7.12.2 and wait for 
 
 I removed the security from hotfix/* so you can push without PRs or merge without approvals.
 
-Testing with a realistic device might be more desirable if possible :)
+Testing with a realistic device might be more desirable if possible :) 
