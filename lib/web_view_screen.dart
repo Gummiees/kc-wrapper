@@ -19,32 +19,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
     super.initState();
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onNavigationRequest: (NavigationRequest request) async {
-            // Handle market:// URLs
-            if (request.url.startsWith('market://')) {
-              if (await canLaunchUrl(Uri.parse(request.url))) {
-                await launchUrl(Uri.parse(request.url));
-                return NavigationDecision.prevent;
-              }
-            }
-
-            // Handle regular URLs that should open in browser
-            if (request.url != widget.url) {
-              if (await canLaunchUrl(Uri.parse(request.url))) {
-                await launchUrl(
-                  Uri.parse(request.url),
-                  mode: LaunchMode.externalApplication,
-                );
-                return NavigationDecision.prevent;
-              }
-            }
-
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
       ..loadRequest(
         Uri.parse(widget.url),
       );
